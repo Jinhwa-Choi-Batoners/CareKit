@@ -1,21 +1,21 @@
 /*
  Copyright (c) 2021, Apple Inc. All rights reserved.
- 
+
  Redistribution and use in source and binary forms, with or without modification,
  are permitted provided that the following conditions are met:
- 
+
  1.  Redistributions of source code must retain the above copyright notice, this
  list of conditions and the following disclaimer.
- 
+
  2.  Redistributions in binary form must reproduce the above copyright notice,
  this list of conditions and the following disclaimer in the documentation and/or
  other materials provided with the distribution.
- 
+
  3. Neither the name of the copyright holder(s) nor the names of any contributors
  may be used to endorse or promote products derived from this software without
  specific prior written permission. No license is granted to the trademarks of
  the copyright holders even if such marks are included in this software.
- 
+
  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
  AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
  IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
@@ -41,11 +41,13 @@ public protocol OCKSurveyTaskViewControllerDelegate: AnyObject {
     func surveyTask(
         viewController: OCKSurveyTaskViewController,
         for task: OCKAnyTask,
-        didFinish result: Result<ORKTaskViewControllerFinishReason, Error>)
+        didFinish result: Result<ORKTaskViewControllerFinishReason, Error>
+    )
 
     func surveyTask(
         viewController: OCKSurveyTaskViewController,
-        shouldAllowDeletingOutcomeForEvent event: OCKAnyEvent) -> Bool
+        shouldAllowDeletingOutcomeForEvent event: OCKAnyEvent
+    ) -> Bool
 }
 
 public extension OCKSurveyTaskViewControllerDelegate {
@@ -53,13 +55,15 @@ public extension OCKSurveyTaskViewControllerDelegate {
     func surveyTask(
         viewController: OCKSurveyTaskViewController,
         for task: OCKAnyTask,
-        didFinish result: Result<ORKTaskViewControllerFinishReason, Error>) {
+        didFinish result: Result<ORKTaskViewControllerFinishReason, Error>
+    ) {
         // No-op
     }
 
     func surveyTask(
         viewController: OCKSurveyTaskViewController,
-        shouldAllowDeletingOutcomeForEvent event: OCKAnyEvent) -> Bool {
+        shouldAllowDeletingOutcomeForEvent event: OCKAnyEvent
+    ) -> Bool {
         return true
     }
 }
@@ -78,7 +82,8 @@ open class OCKSurveyTaskViewController: OCKTaskViewController<OCKTaskController,
         storeManager: OCKSynchronizedStoreManager,
         survey: ORKTask,
         viewSynchronizer: OCKSurveyTaskViewSynchronizer = OCKSurveyTaskViewSynchronizer(),
-        extractOutcome: @escaping (ORKTaskResult) -> [OCKOutcomeValue]?) {
+        extractOutcome: @escaping (ORKTaskResult) -> [OCKOutcomeValue]?
+    ) {
 
         self.init(
             taskID: task.id,
@@ -96,7 +101,8 @@ open class OCKSurveyTaskViewController: OCKTaskViewController<OCKTaskController,
         storeManager: OCKSynchronizedStoreManager,
         survey: ORKTask,
         viewSynchronizer: OCKSurveyTaskViewSynchronizer = OCKSurveyTaskViewSynchronizer(),
-        extractOutcome: @escaping (ORKTaskResult) -> [OCKOutcomeValue]?) {
+        extractOutcome: @escaping (ORKTaskResult) -> [OCKOutcomeValue]?
+    ) {
 
         self.survey = survey
         self.extractOutcome = extractOutcome
@@ -113,8 +119,8 @@ open class OCKSurveyTaskViewController: OCKTaskViewController<OCKTaskController,
         _ taskView: UIView & OCKTaskDisplayable,
         didCompleteEvent isComplete: Bool,
         at indexPath: IndexPath,
-        sender: Any?) {
-
+        sender: Any?
+    ) {
         guard isComplete else {
 
             if let event = controller.eventFor(indexPath: indexPath),
@@ -122,21 +128,24 @@ open class OCKSurveyTaskViewController: OCKTaskViewController<OCKTaskController,
                let delegate = surveyDelegate,
 
                delegate.surveyTask(
-                    viewController: self,
-                    shouldAllowDeletingOutcomeForEvent: event) == false {
+                   viewController: self,
+                   shouldAllowDeletingOutcomeForEvent: event
+               ) == false
+            {
 
                 return
             }
 
             let cancelAction = UIAlertAction(
-                title: "Cancel",
+                title: "취소하기",
                 style: .cancel,
                 handler: nil
             )
 
             let confirmAction = UIAlertAction(
-                title: "Delete", style: .destructive) { _ in
-                
+                title: "삭제하기", style: .destructive
+            ) { _ in
+
                 super.taskView(
                     taskView,
                     didCompleteEvent: isComplete,
@@ -146,8 +155,8 @@ open class OCKSurveyTaskViewController: OCKTaskViewController<OCKTaskController,
             }
 
             let warningAlert = UIAlertController(
-                title: "Delete",
-                message: "Are you sure you want to delete your response?",
+                title: "삭제하기",
+                message: "정말로 응답을 삭제하시겠습니까?",
                 preferredStyle: .actionSheet
             )
 
@@ -189,11 +198,12 @@ open class OCKSurveyTaskViewController: OCKTaskViewController<OCKTaskController,
     }
 
     // MARK: ORKTaskViewControllerDelegate
-    
+
     open func taskViewController(
         _ taskViewController: ORKTaskViewController,
         didFinishWith reason: ORKTaskViewControllerFinishReason,
-        error: Error?) {
+        error: Error?
+    ) {
 
         taskViewController.dismiss(animated: true, completion: nil)
 
@@ -233,7 +243,8 @@ open class OCKSurveyTaskViewController: OCKTaskViewController<OCKTaskController,
 
         controller.storeManager.store.addAnyOutcome(
             outcome,
-            callbackQueue: .main) { result in
+            callbackQueue: .main
+        ) { result in
 
             if case let .failure(error) = result {
 

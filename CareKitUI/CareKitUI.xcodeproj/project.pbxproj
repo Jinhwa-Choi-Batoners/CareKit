@@ -234,6 +234,8 @@
 		51F78FED22D7C7C100058858 /* OCKCalendarDisplayable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OCKCalendarDisplayable.swift; sourceTree = "<group>"; };
 		51F9F11A23A9B8F00087C900 /* CareKitUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CareKitUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		51FEF4C324325902003CE34C /* OCKFeaturedContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OCKFeaturedContentView.swift; sourceTree = "<group>"; };
+		537DEA322AE5FA7900611925 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = ko; path = ko.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
+		537DEA332AE5FA8A00611925 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Localizable.strings; sourceTree = "<group>"; };
 		64699E9822FC7B5000FF624F /* OCKLogButtonCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OCKLogButtonCell.swift; sourceTree = "<group>"; };
 		64E1BD4B2309FCDC00DFFE52 /* OCKResponsiveLayoutTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OCKResponsiveLayoutTests.swift; sourceTree = "<group>"; };
 		64E1BD4D2309FCF200DFFE52 /* OCKResponsiveLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OCKResponsiveLayout.swift; sourceTree = "<group>"; };
@@ -721,11 +723,12 @@
 			};
 			buildConfigurationList = 51742255224185290054E97C /* Build configuration list for PBXProject "CareKitUI" */;
 			compatibilityVersion = "Xcode 9.3";
-			developmentRegion = en;
+			developmentRegion = ko;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 				Base,
+				ko,
 			);
 			mainGroup = 51742251224185290054E97C;
 			productRefGroup = 5174225C224185290054E97C /* Products */;
@@ -916,6 +919,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				03AD384723625A4100F6E7DC /* en */,
+				537DEA322AE5FA7900611925 /* ko */,
 			);
 			name = Localizable.stringsdict;
 			sourceTree = "<group>";
@@ -924,6 +928,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				64EEC2372318253B00B1012F /* en */,
+				537DEA332AE5FA8A00611925 /* ko */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -973,6 +978,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ADDRESS_SANITIZER_CONTAINER_OVERFLOW = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_ANALYZER_SECURITY_FLOATLOOPCOUNTER = YES;
@@ -1056,6 +1062,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ADDRESS_SANITIZER_CONTAINER_OVERFLOW = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_ANALYZER_SECURITY_FLOATLOOPCOUNTER = YES;
